@@ -18,7 +18,7 @@ public sealed class DatabaseUtils : IDisposable, IAsyncDisposable
     }
 
 
-    public async Task LoadMigration()
+    public async Task RunMigration()
     {
         var migrations = await _appDbContext.Database.GetAppliedMigrationsAsync();
         if (!migrations.Any()) await _appDbContext.Database.MigrateAsync();

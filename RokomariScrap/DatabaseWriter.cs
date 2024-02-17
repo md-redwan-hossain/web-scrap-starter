@@ -16,10 +16,10 @@ public sealed class DatabaseWriter : IDisposable, IAsyncDisposable
         while (_queue.Count != 0)
         {
             var item = _queue.Dequeue();
-
             await _appDbContext.Books.AddAsync(item);
-            await _appDbContext.SaveChangesAsync();
         }
+
+        await _appDbContext.SaveChangesAsync();
     }
 
     public void Dispose() => _appDbContext.Dispose();

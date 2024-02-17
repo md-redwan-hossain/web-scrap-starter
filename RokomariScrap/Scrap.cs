@@ -4,10 +4,11 @@ namespace RokomariScrap;
 
 public static class Scrap
 {
-    public static async Task<Queue<Book>> Act(uint pageNumber)
+    public static async Task<Queue<Book>> Run(uint pageNumber)
     {
-        var queue = new Queue<Book>();
         await using var browser = await InitBrowser();
+        var queue = new Queue<Book>();
+
         var page = await browser.NewPageAsync();
         const string baseUrl = "https://www.rokomari.com/book/category/81/islamic";
         var query = $"{baseUrl}?page={pageNumber}";
